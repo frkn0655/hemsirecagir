@@ -1,0 +1,339 @@
+<div class="auth-modal" id="nurse-signup-modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <h2 style="margin-bottom: 1.5rem; color: var(--primary);">Hemşire Olarak Kaydol</h2>
+        
+        <form id="nurse-signup-form">
+            <!-- Kişisel Bilgiler -->
+            <h3 style="margin-bottom: 1rem; color: var(--secondary);">Kişisel Bilgiler</h3>
+            <div class="form-group">
+                <label for="nurse-name">Ad Soyad*</label>
+                <input type="text" class="form-control" id="nurse-name" required>
+            </div>
+            <div class="form-group">
+                <label for="nurse-email">E-posta*</label>
+                <input type="email" class="form-control" id="nurse-email" required>
+            </div>
+            <div class="form-group">
+                <label for="nurse-phone">Telefon*</label>
+                <input type="tel" class="form-control" id="nurse-phone" required>
+            </div>
+            <div class="form-group">
+                <label for="nurse-birth-date">Doğum Tarihi*</label>
+                <input type="date" class="form-control" id="nurse-birth-date" required>
+            </div>
+            <div class="form-group">
+                <label for="nurse-id">TC Kimlik No*</label>
+                <input type="text" class="form-control" id="nurse-id" pattern="[0-9]{11}" maxlength="11" placeholder="11 haneli TC Kimlik No" required>
+            </div>
+            <div class="form-group">
+                <label for="nurse-address">Adres*</label>
+                <textarea class="form-control" id="nurse-address" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="nurse-city">Şehir*</label>
+                <select class="form-control" id="nurse-city" required>
+                    <option value="">Şehir Seçin</option>
+                    <option value="istanbul">İstanbul</option>
+                    <option value="ankara">Ankara</option>
+                    <option value="izmir">İzmir</option>
+                    <option value="adana">Adana</option>
+                    <option value="antalya">Antalya</option>
+                    <option value="bursa">Bursa</option>
+                    <option value="trabzon">Trabzon</option>
+                    <option value="konya">Konya</option>
+                    <option value="eskisehir">Eskişehir</option>
+                    <option value="other">Diğer</option>
+                </select>
+            </div>
+            
+            <!-- Eğitim ve Mesleki Bilgiler -->
+            <h3 style="margin: 1.5rem 0 1rem; color: var(--secondary);">Eğitim ve Mesleki Bilgiler</h3>
+            <div class="form-group">
+                <label for="nurse-education-level">Eğitim Seviyesi*</label>
+                <select class="form-control" id="nurse-education-level" required>
+                    <option value="">Eğitim Seviyesi Seçin</option>
+                    <option value="onlisans">Önlisans (Sağlık MYO)</option>
+                    <option value="lisans">Lisans (Hemşirelik)</option>
+                    <option value="yuksek_lisans">Yüksek Lisans</option>
+                    <option value="doktora">Doktora</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="nurse-school">Okul/Üniversite*</label>
+                <input type="text" class="form-control" id="nurse-school" placeholder="Mezun olduğunuz okul" required>
+            </div>
+            <div class="form-group">
+                <label for="nurse-graduation-year">Mezuniyet Yılı*</label>
+                <input type="number" class="form-control" id="nurse-graduation-year" min="1950" max="2025" required>
+            </div>
+            <div class="form-group">
+                <label for="nurse-license-number">Hemşirelik Lisans Numarası*</label>
+                <input type="text" class="form-control" id="nurse-license-number" required>
+            </div>
+            <div class="form-group">
+                <label for="nurse-experience">Deneyim (Yıl)*</label>
+                <input type="number" class="form-control" id="nurse-experience" min="0" required>
+            </div>
+            
+            <!-- Uzmanlık Alanları -->
+            <h3 style="margin: 1.5rem 0 1rem; color: var(--secondary);">Uzmanlık Alanları</h3>
+            <div class="form-group">
+                <label>Uzmanlaştığınız alanları seçin (birden fazla seçebilirsiniz)*</label>
+                <div style="margin-top: 0.5rem;">
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                        <div style="min-width: 200px;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="specialty" value="yasli_bakim"> Yaşlı Bakımı
+                            </label>
+                        </div>
+                        <div style="min-width: 200px;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="specialty" value="ameliyat_sonrasi"> Ameliyat Sonrası Bakım
+                            </label>
+                        </div>
+                        <div style="min-width: 200px;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="specialty" value="kronik_hastalik"> Kronik Hastalık Bakımı
+                            </label>
+                        </div>
+                        <div style="min-width: 200px;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="specialty" value="engelli_bakim"> Engelli Bakımı
+                            </label>
+                        </div>
+                        <div style="min-width: 200px;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="specialty" value="pediatrik_bakim"> Pediatrik Bakım
+                            </label>
+                        </div>
+                        <div style="min-width: 200px;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="specialty" value="diyabet"> Diyabet Bakımı
+                            </label>
+                        </div>
+                        <div style="min-width: 200px;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="specialty" value="yara_bakim"> Yara Bakımı
+                            </label>
+                        </div>
+                        <div style="min-width: 200px;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="specialty" value="enjeksiyon"> Enjeksiyon Uygulamaları
+                            </label>
+                        </div>
+                        <div style="min-width: 200px;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="specialty" value="iv_terapi"> IV Terapi
+                            </label>
+                        </div>
+                        <div style="min-width: 200px;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="specialty" value="fizik_tedavi"> Fizik Tedavi Desteği
+                            </label>
+                        </div>
+                        <div style="min-width: 200px;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="specialty" value="yenidogan"> Yenidoğan Bakımı
+                            </label>
+                        </div>
+                        <div style="min-width: 200px;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="specialty" value="palyatif_bakim"> Palyatif Bakım
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sertifikalar ve Ek Belgeler -->
+            <h3 style="margin: 1.5rem 0 1rem; color: var(--secondary);">Sertifikalar ve Belgeler</h3>
+            <div class="form-group">
+                <label for="nurse-certificates">Sertifikalar (Varsa)</label>
+                <textarea class="form-control" id="nurse-certificates" rows="3" placeholder="Sahip olduğunuz sertifikaları ve belgeleri listeleyin (örn: İlk Yardım, CPR, Özel Bakım, vb.)"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="nurse-diploma">Diploma Yükle*</label>
+                <input type="file" class="form-control" id="nurse-diploma" accept=".pdf,.jpg,.jpeg,.png" required>
+                <small style="color: #666; font-size: 0.8rem;">PDF, JPG veya PNG dosyası yükleyin (max 5MB)</small>
+            </div>
+            <div class="form-group">
+                <label for="nurse-license">Hemşirelik Lisans Belgesi Yükle*</label>
+                <input type="file" class="form-control" id="nurse-license" accept=".pdf,.jpg,.jpeg,.png" required>
+                <small style="color: #666; font-size: 0.8rem;">PDF, JPG veya PNG dosyası yükleyin (max 5MB)</small>
+            </div>
+            <div class="form-group">
+                <label for="nurse-additional-docs">Ek Belgeler (Varsa)</label>
+                <input type="file" class="form-control" id="nurse-additional-docs" accept=".pdf,.jpg,.jpeg,.png" multiple>
+                <small style="color: #666; font-size: 0.8rem;">Sertifikalar, referanslar veya diğer belgeler (max 5 dosya, 5MB)</small>
+            </div>
+            
+            <!-- Hizmet Bilgileri -->
+            <h3 style="margin: 1.5rem 0 1rem; color: var(--secondary);">Hizmet Bilgileri</h3>
+            <div class="form-group">
+                <label for="nurse-availability">Uygunluk Durumu*</label>
+                <select class="form-control" id="nurse-availability" required>
+                    <option value="">Uygunluk Durumunu Seçin</option>
+                    <option value="full-time">Tam Zamanlı</option>
+                    <option value="part-time">Yarı Zamanlı</option>
+                    <option value="weekends">Sadece Hafta Sonları</option>
+                    <option value="evenings">Akşam Saatleri</option>
+                    <option value="on-call">Çağrı Üzerine</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="nurse-service-areas">Hizmet Verebildiğiniz Bölgeler*</label>
+                <input type="text" class="form-control" id="nurse-service-areas" placeholder="Semtler veya ilçeler (virgülle ayırın)" required>
+            </div>
+            <div class="form-group">
+                <label for="nurse-hourly-rate">Saatlik Ücret (TL)*</label>
+                <input type="number" class="form-control" id="nurse-hourly-rate" min="0" required>
+            </div>
+            <div class="form-group">
+                <label for="nurse-skills">Ek Beceriler ve Hizmetler</label>
+                <textarea class="form-control" id="nurse-skills" rows="3" placeholder="Sunduğunuz diğer hizmetler veya sahip olduğunuz özel beceriler"></textarea>
+            </div>
+            
+            <!-- Biyografi -->
+            <h3 style="margin: 1.5rem 0 1rem; color: var(--secondary);">Biyografi ve Profil</h3>
+            <div class="form-group">
+                <label for="nurse-bio">Kendinizi Tanıtın*</label>
+                <textarea class="form-control" id="nurse-bio" rows="4" placeholder="Kendiniz, deneyimleriniz ve çalışma tarzınız hakkında kısa bir açıklama yazın" required></textarea>
+                <small style="color: #666; font-size: 0.8rem;">Bu metin profil sayfanızda görünecektir (150-300 karakter)</small>
+            </div>
+            <div class="form-group">
+                <label for="nurse-profile-pic">Profil Fotoğrafı*</label>
+                <input type="file" class="form-control" id="nurse-profile-pic" accept="image/*" required>
+                <small style="color: #666; font-size: 0.8rem;">Profesyonel bir fotoğraf yükleyin (max 2MB)</small>
+            </div>
+            
+            <!-- Hesap Bilgileri -->
+            <h3 style="margin: 1.5rem 0 1rem; color: var(--secondary);">Hesap Bilgileri</h3>
+            <div class="form-group">
+                <label for="nurse-password">Şifre*</label>
+                <input type="password" class="form-control" id="nurse-password" minlength="8" required>
+                <small style="color: #666; font-size: 0.8rem;">En az 8 karakter uzunluğunda olmalıdır</small>
+            </div>
+            <div class="form-group">
+                <label for="nurse-password-confirm">Şifre Tekrarı*</label>
+                <input type="password" class="form-control" id="nurse-password-confirm" minlength="8" required>
+            </div>
+            
+            <!-- Onay -->
+            <div class="form-group" style="margin-top: 1.5rem;">
+                <label class="checkbox-container" style="display: flex; align-items: flex-start;">
+                    <input type="checkbox" id="nurse-terms" required style="margin-top: 3px;">
+                    <span style="margin-left: 0.5rem;">
+                        <a href="#" style="color: var(--primary);">Kullanım Şartları</a> ve 
+                        <a href="#" style="color: var(--primary);">Gizlilik Politikası</a>'nı okudum ve kabul ediyorum.*
+                    </span>
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="checkbox-container" style="display: flex; align-items: flex-start;">
+                    <input type="checkbox" id="nurse-consent" required style="margin-top: 3px;">
+                    <span style="margin-left: 0.5rem;">
+                        Kimlik ve mesleki belgelerin doğrulanması için gerekli bilgilerimin kullanılmasını kabul ediyorum.*
+                    </span>
+                </label>
+            </div>
+            
+            <!-- Gönder Butonu -->
+            <div style="margin-top: 2rem;">
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;">Kaydı Tamamla</button>
+                <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: #666;">
+                    * işaretli alanlar zorunludur. Kaydınızı tamamladıktan sonra, bilgileriniz ekibimiz tarafından kontrol edilecek ve onaylandıktan sonra profiliniz aktif hale gelecektir.
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Kayıt formundaki checkboxların stilini düzeltmek için ek CSS -->
+<style>
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+/* Form grupları arasındaki boşlukları düzenle */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+/* Yükleme butonlarını düzenle */
+input[type="file"] {
+    padding: 0.5rem;
+    border: 1px dashed #ccc;
+    background-color: #f9f9f9;
+}
+
+/* Modal düzenlemeleri */
+.auth-modal {
+    overflow-y: auto;
+    padding: 1rem 0;
+}
+
+.modal-content {
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+</style>
+
+<!-- Modal açma ve kapama işlevleri için JavaScript -->
+<script>
+// Modal açma fonksiyonu
+function openModal(modalType) {
+    if (modalType === 'login') {
+        document.getElementById('login-modal').style.display = 'flex';
+    } else if (modalType === 'signup') {
+        document.getElementById('login-modal').style.display = 'flex';
+        document.querySelector('[data-tab="signup"]').click();
+    } else if (modalType === 'nurse-signup') {
+        document.getElementById('nurse-signup-modal').style.display = 'flex';
+    }
+}
+
+// Modal kapatma fonksiyonu
+function closeModal() {
+    document.getElementById('login-modal').style.display = 'none';
+    document.getElementById('nurse-signup-modal').style.display = 'none';
+}
+
+// Tab değiştirme fonksiyonları
+document.querySelectorAll('.modal-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+        // Tüm tabları pasif yap
+        document.querySelectorAll('.modal-tab').forEach(t => {
+            t.classList.remove('active');
+        });
+        
+        // Tüm içerikleri gizle
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.remove('active');
+        });
+        
+        // Tıklanan tabı aktif yap
+        this.classList.add('active');
+        
+        // İlgili içeriği göster
+        const tabId = this.getAttribute('data-tab');
+        document.getElementById(tabId + '-tab').classList.add('active');
+    });
+});
+
+// Hemşire kayıt formunu gönderme
+document.getElementById('nurse-signup-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    // Form doğrulama ve gönderme işlemleri burada yapılacak
+    alert('Kayıt formunuz alındı. Bilgileriniz incelendikten sonra sizinle iletişime geçeceğiz.');
+    closeModal();
+});
+</script>

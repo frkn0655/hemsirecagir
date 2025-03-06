@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EvdeBakım - Hemşire Bulma Platformu</title>
+    <style>
+        :root {
+            --primary: #4a6da7;
+            --secondary: #6a8dd3;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --success: #28a745;
+            --danger: #dc3545;
+            --warning: #ffc107;
+            --info: #17a2b8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 0.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--warning);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(74, 109, 167, 0.8), rgba(74, 109, 167, 0.9)), url('/api/placeholder/1200/600') center/cover;
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+        
+        .btn-primary {
+            background-color: var(--warning);
+            color: var(--dark);
+        }
+        
+        .btn-secondary {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            padding: 1.5rem;
+            flex: 1;
+            min-width: 250px;
+            max-width: 350px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .search-section {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .search-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .search-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .nurse-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+        
+        .nurse-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .nurse-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .nurse-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .nurse-info {
+            padding: 1.5rem;
+        }
+        
+        .nurse-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .nurse-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .rating {
+            color: var(--warning);
+        }
+        
+        .nurse-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tag {
+            background-color: #e9ecef;
+            color: #495057;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .nurse-card .btn {
+            width: 100%;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        
+        .how-it-works {
+            margin-bottom: 3rem;
+        }
+        
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            background-color: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+        
+        .testimonials {
+            margin-bottom: 3rem;
+        }
+        
+        .testimonial-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
+        
+        .auth-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .modal-tabs {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .modal-tab {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            margin-right: 1rem;
+        }
+        
+        .modal-tab.active {
+            border-bottom: 2px solid var(--primary);
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 1rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            color: var(--light);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #adb5bd;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .search-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i>
+                <span>EvdeBakım</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">Özellikler</a></li>
+                <li><a href="#search">Hemşire Bul</a></li>
+                <li><a href="#how-it-works">Nasıl Çalışır</a></li>
+                <li><a href="#" onclick="openModal('login')">Giriş Yap</a></li>
+                <li><a href="#" onclick="openModal('signup')" class="btn btn-primary">Kayıt Ol</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Evde Profesyonel Bakım Hizmeti</h1>
+            <p>Kalifiye hemşireler ile güvenilir evde bakım hizmeti. İhtiyacınıza göre hemşire bulun ve hemen iletişime geçin.</p>
+            <div>
+                <a href="#search" class="btn btn-primary">Hemşire Bul</a>
+                <a href="hemsire-kayit.html" onclick="openModal('nurse-signup')" class="btn btn-secondary">Hemşire Olarak Kaydol</a>
+            </div>
+        </div>
+    </section>
+    
+    <main>
+        <section id="features" class="features-section">
+            <h2 class="section-title">Neden EvdeBakım?</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <i class="fas fa-user-nurse"></i>
+                    <h3>Doğrulanmış Hemşireler</h3>
+                    <p>Tüm hemşirelerimiz lisans ve deneyim doğrulamasından geçer. Güvenle hizmet alabilirsiniz.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-search"></i>
+                    <h3>Kolay Arama</h3>
+                    <p>İhtiyacınıza uygun hemşireyi uzmanlık, deneyim, bölge ve uygunluğa göre kolayca bulun.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Hızlı İletişim</h3>
+                    <p>Seçtiğiniz hemşire ile anında iletişime geçin ve bakım planınızı oluşturun.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="search" class="search-section">
+            <h2 class="section-title">Hemşire Bul</h2>
+            <form class="search-form">
+                <div class="form-group">
+                    <select class="form-control" id="service-type">
+                        <option value="">Hizmet Türü</option>
+                        <option value="elderly">Yaşlı Bakımı</option>
+                        <option value="postop">Ameliyat Sonrası Bakım</option>
+                        <option value="chronic">Kronik Hastalık Bakımı</option>
+                        <option value="disability">Engelli Bakımı</option>
+                        <option value="pediatric">Pediatrik Bakım</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" id="location">
+                        <option value="">Şehir</option>
+                        <option value="istanbul">İstanbul</option>
+                        <option value="ankara">Ankara</option>
+                        <option value="izmir">İzmir</option>
+                        <option value="adana">Adana</option>
+                        <option value="antalya">Antalya</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="date" class="form-control" id="date" placeholder="Tarih">
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary" style="width: 100%;" onclick="searchNurses()">Hemşire Ara</button>
+                </div>
+            </form>
+            
+            <div class="search-results">
+                <div class="nurse-card">
+                    <div class="nurse-img">
+                        <img src="https://sinanekici.com.tr/uploads/2021/01/hemsire.jpg" alt="Hemşire Ayşe">
+                    </div>
+                    <div class="nurse-info">
+                        <h3>Ayşe Yılmaz</h3>
+                        <div class="nurse-meta">
+                            <span>5 yıl deneyim</span>
+                            <span class="rating">★★★★★ (4.9)</span>
+                        </div>
+                        <div class="nurse-tags">
+                            <span class="tag">Yaşlı Bakımı</span>
+                            <span class="tag">İlaç Uygulaması</span>
+                            <span class="tag">Pansuman</span>
+                        </div>
+                        <p>İstanbul Üniversitesi Hemşirelik mezunuyum. Yaşlı bakımı konusunda uzmanlaştım.</p>
+                        <button class="btn btn-primary" onclick="callNurse(1)">Hemşireyi Çağır</button>
+                    </div>
+                </div>
+                
+                <div class="nurse-card">
+                    <div class="nurse-img">
+                        <img src="https://media.istockphoto.com/id/1186255987/tr/foto%C4%9Fraf/klinikte-stetoskoplu-erkek-hem%C5%9Fire-g%C3%BCl%C3%BCms%C3%BCyor-ve-kameraya-bak%C4%B1yor.jpg?s=612x612&w=0&k=20&c=BUyz08G9BouDbml3XJ1oiKFomH33yroDsxv1yX7tXGU=" alt="Hemşire Mehmet">
+                    </div>
+                    <div class="nurse-info">
+                        <h3>Mehmet Kaya</h3>
+                        <div class="nurse-meta">
+                            <span>8 yıl deneyim</span>
+                            <span class="rating">★★★★☆ (4.7)</span>
+                        </div>
+                        <div class="nurse-tags">
+                            <span class="tag">Ameliyat Sonrası</span>
+                            <span class="tag">Fizik Tedavi</span>
+                            <span class="tag">Enjeksiyon</span>
+                        </div>
+                        <p>Yoğun bakım ve ameliyat sonrası bakım konusunda uzmanım. Özel hastanelerde çalıştım.</p>
+                        <button class="btn btn-primary" onclick="callNurse(2)">Hemşireyi Çağır</button>
+                    </div>
+                </div>
+                
+                <div class="nurse-card">
+                    <div class="nurse-img">
+                        <img src="https://media.istockphoto.com/id/1412849328/tr/foto%C4%9Fraf/portrait-of-a-young-nurse-doctor.jpg?s=612x612&w=0&k=20&c=-KEqm_BpzxsTRmu4JPyo87tluUqJLWGZSV7Nb1EOwyk=" alt="Hemşire Zeynep">
+                    </div>
+                    <div class="nurse-info">
+                        <h3>Zeynep Demir</h3>
+                        <div class="nurse-meta">
+                            <span>3 yıl deneyim</span>
+                            <span class="rating">★★★★★ (5.0)</span>
+                        </div>
+                        <div class="nurse-tags">
+                            <span class="tag">Pediatrik Bakım</span>
+                            <span class="tag">Yenidoğan</span>
+                            <span class="tag">Aşı Uygulaması</span>
+                        </div>
+                        <p>Çocuk sağlığı ve bakımı konusunda uzmanım. Yenidoğan yoğun bakım tecrübem var.</p>
+                        <button class="btn btn-primary" onclick="callNurse(3)">Hemşireyi Çağır</button>
+                    </div>
+                </div>
+                
+                <div class="nurse-card">
+                    <div class="nurse-img">
+                        <img src="https://media.istockphoto.com/id/1486172842/tr/foto%C4%9Fraf/portrait-of-male-nurse-in-his-office.jpg?s=612x612&w=0&k=20&c=Gt251hW00Y-ZMEC8oqj7uoLJJY4u7WaVXqeBn30zKP4=" alt="Hemşire Ali">
+                    </div>
+                    <div class="nurse-info">
+                        <h3>Ali Öztürk</h3>
+                        <div class="nurse-meta">
+                            <span>10 yıl deneyim</span>
+                            <span class="rating">★★★★☆ (4.8)</span>
+                        </div>
+                        <div class="nurse-tags">
+                            <span class="tag">Kronik Hastalık</span>
+                            <span class="tag">Diyabet</span>
+                            <span class="tag">Tansiyon</span>
+                        </div>
+                        <p>Kronik hastalık bakımı ve takibi konusunda uzmanım. Diyabet eğitmenliği sertifikam var.</p>
+                        <button class="btn btn-primary" onclick="callNurse(4)">Hemşireyi Çağır</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="how-it-works" class="how-it-works">
+            <h2 class="section-title">Nasıl Çalışır?</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Hemşire Bulun</h3>
+                    <p>İhtiyacınıza uygun hemşireyi arama filtreleri ile kolayca bulun.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>İletişime Geçin</h3>
+                    <p>Seçtiğiniz hemşire ile iletişime geçin, talebinizi iletin.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Randevu Alın</h3>
+                    <p>Uygun tarih ve saatte randevunuzu oluşturun.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Hizmet Alın</h3>
+                    <p>Profesyonel hemşireniz belirlenen zamanda evinize gelir.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="testimonials">
+            <h2 class="section-title">Mutlu Müşterilerimiz</h2>
+            <div class="testimonial-cards">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "Annemin bakımı için EvdeBakım'dan Ayşe Hanım'ı bulduk. Çok profesyonel ve ilgili bir hemşire. Artık bakım konusunda hiç endişemiz yok."
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1EBzXeh9wvM-6_5AFgYmI79MSLt2y9UPJdQ&s" alt="Hakan Bey">
+                        <div>
+                            <h4>Hakan Yıldız</h4>
+                            <p>İstanbul</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "Ameliyat sonrası bakım için Mehmet Bey'i tercih ettik. Bilgisi ve tecrübesi sayesinde iyileşme sürecim çok hızlı oldu. Teşekkürler EvdeBakım!"
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://iletim.istanbul.edu.tr/wp-content/uploads/2021-03-07-at-22.00.05.jpg" alt="Sevgi Hanım">
+                        <div>
+                            <h4>Sevgi Aydın</h4>
+                            <p>Ankara</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "Oğlumun düzenli enjeksiyonları için Zeynep Hanım ile çalışıyoruz. Çocuklarla iletişimi mükemmel, oğlum artık iğnelerden korkmuyor."
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://imcajans.com/public/img/kadro/20844695563.jpg" alt="Murat Bey">
+                        <div>
+                            <h4>Murat Çelik</h4>
+                            <p>İzmir</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <div class="auth-modal" id="login-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="modal-tabs">
+                <div class="modal-tab active" data-tab="login">Giriş Yap</div>
+                <div class="modal-tab" data-tab="signup">Kayıt Ol</div>
+            </div>
+            
+            <div class="tab-content active" id="login-tab">
+                <form>
+                    <div class="form-group">
+                        <label for="login-email">E-posta</label>
+                        <input type="email" class="form-control" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Şifre</label>
+                        <input type="password" class="form-control" id="login-password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Giriş Yap</button>
+                </form>
+            </div>
+            
+            <div class="tab-content" id="signup-tab">
+                <form>
+                    <div class="form-group">
+                        <label for="signup-name">Ad Soyad</label>
+                        <input type="text" class="form-control" id="signup-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">E-posta</label>
+                        <input type="email" class="form-control" id="signup-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-phone">Telefon</label>
+                        <input type="tel" class="form-control" id="signup-phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Şifre</label>
+                        <input type="password" class="form-control" id="signup-password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Kayıt Ol</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="auth-modal" id="nurse-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 style="margin-bottom: 1.5rem; color: var(--primary);">Hemşire Profili Oluştur</h2>
+            
+            <form>
+                <div class="form-group">
+                    <label for="nurse-name">Ad Soyad</label>
+                    <input type="text" class="form-control" id="nurse-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="nurse-email">E-posta</label>
+                    <input type="email" class="form-control" id="nurse-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="nurse-phone">Telefon</label>
+                    <input type="tel" class="form-control" id="nurse-phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="nurse-education">Eğitim Bilgileri</label>
+                    <input type="text" class="form-control" id="nurse-education" placeholder="Okul, Bölüm, Mezuniyet Yılı" required>
+                </div>
+                <div class="form-group">
+                    <label for="nurse-experience">Deneyim (Yıl)</label>
+                    <input type="number" class="form-control" id="nurse-experience" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="nurse-specialties">Uzmanlık Alanları</label>
+                    <select class="form-control" id="nurse-specialties" multiple required>
+					<script>
+function callNurse(nurseId) {
+    alert("Hemşire ile rezervasyon işlemi başlatıldı belirttiğiniz tarihlerde bir değişiklik olursa tarihten en az 8 saat öncesinde +902623251441 numaradan iletişime geçebilirsiniz. Hemşire ID: " + nurseId);
+    // Buraya API çağrısı veya işlem ekleyebilirsin
+}
+</script>
+</body>
+<script>
+function openModal(modalType) {
+    if (modalType === 'login') {
+        document.getElementById('login-modal').style.display = 'flex';
+    } else if (modalType === 'signup') {
+        document.getElementById('login-modal').style.display = 'flex';
+        document.querySelector('[data-tab="signup"]').click();
+    } else if (modalType === 'nurse-signup') {
+        document.getElementById('nurse-signup-modal').style.display = 'flex';
+    }
+}
+
+function closeModal() {
+    document.getElementById('login-modal').style.display = 'none';
+    document.getElementById('nurse-signup-modal').style.display = 'none';
+}
+</script>
+<script src="app.js"></script>
+</body>
+</html>
+
+</body>
+</html>
+
+</html>
+<div class="auth-modal" id="nurse-signup-modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <h2 style="margin-bottom: 1.5rem; color: var(--primary);">Hemşire Olarak Kaydol</h2>
+        
+        <form id="nurse-signup-form">
+            <!-- Kişisel Bilgiler -->
+            <h3 style="margin-bottom: 1rem; color: var(--secondary);">Kişisel Bilgiler</h3>
+            <div class="form-group">
+                <label for="nurse-name">Ad Soyad*</label>
+                <input type="text" class="form-control" id="nurse-name" required>
+            </div>
+            <div class="form-group">
+                <label for="nurse-email">E-posta*</label>
+                <input type="email" class="form-control" id="nurse-email" required>
+            </div>
+            <div class="form-group">
+                <label for="nurse-phone">Telefon*</label>
+                <input type="tel" class="form-control" id="nurse-phone" required>
+            </div>
+            <div class="form-group">
+                <label for="nurse-birth-date">Doğum Tarihi*</label>
+                <input type="date" class="form-control" id="nurse-birth-date" required>
+            </div>
+            <div class="form-group">
+                <label for="nurse-id">TC Kimlik No*</label>
+                <input type="text" class="form-control" id="nurse-id" pattern="[0-9]{11}" maxlength="11" placeholder="11 haneli TC Kimlik No" required>
+            </div>
+            <div class="form-group">
+                <label for="nurse-address">Adres*</label>
+                <textarea class="form-control" id="nurse-address" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="nurse-city">Şehir*</label>
+                <select class="form-control" id="nurse-city" required>
+                    <option value="">Şehir Seçin</option>
+                    <option value="istanbul">İstanbul</option>
+                    <option value="ankara">Ankara</option>
+                    <option value="izmir">İzmir</option>
+                    <option value="adana">Adana</option>
+                    <option value="antalya">Antalya</option>
+                    <option value="bursa">Bursa</option>
+                    <option value="trabzon">Trabzon</option>
+                    <option value="konya">Konya</option>
+                    <option value="eskisehir">Eskişehir</option>
+                    <option value="other">Diğer</option>
+                </select>
+            </div>
+            
+            <!-- Eğitim ve Mesleki Bilgiler -->
+            <h3 style="margin: 1.5rem 0 1rem; color: var(--secondary);">Eğitim ve Mesleki Bilgiler</h3>
+            <div class="form-group">
+                <label for="nurse-education-level">Eğitim Seviyesi*</label>
+                <select class="form-control" id="nurse-education-level" required>
+                    <option value="">Eğitim Seviyesi Seçin</option>
+                    <option value="onlisans">Önlisans (Sağlık MYO)</option>
+                    <option value="lisans">Lisans (Hemşirelik)</option>
+                    <option value="yuksek_lisans">Yüksek Lisans</option>
+                    <option value="doktora">Doktora</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="nurse-school">Okul/Üniversite*</label>
+                <input type="text" class="form-control" id="nurse-school" placeholder="Mezun olduğunuz okul" required>
+            </div>
+            <div class="form-group">
+                <label for="nurse-graduation-year">Mezuniyet Yılı*</label>
+                <input type="number" class="form-control" id="nurse-graduation-year" min="1950" max="2025" required>
+            </div>
+            <div class="form-group">
+                <label for="nurse-license-number">Hemşirelik Lisans Numarası*</label>
+                <input type="text" class="form-control" id="nurse-license-number" required>
+            </div>
+            <div class="form-group">
+                <label for="nurse-experience">Deneyim (Yıl)*</label>
+                <input type="number" class="form-control" id="nurse-experience" min="0" required>
+            </div>
+            
+            <!-- Uzmanlık Alanları -->
+            <h3 style="margin: 1.5rem 0 1rem; color: var(--secondary);">Uzmanlık Alanları</h3>
+            <div class="form-group">
+                <label>Uzmanlaştığınız alanları seçin (birden fazla seçebilirsiniz)*</label>
+                <div style="margin-top: 0.5rem;">
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                        <div style="min-width: 200px;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="specialty" value="yasli_bakim"> Yaşlı Bakımı
+                            </label>
+                        </div>
+                        <div style="min-width: 200px;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="specialty" value="ameliyat_sonrasi"> Ameliyat Sonrası Bakım
+                            </label>
+                        </div>
+                        <div style="min-width: 200px;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="specialty" value="kronik_hastalik"> Kronik Hastalık Bakımı
+                            </label>
+                        </div>
+                        <div style="min-width: 200px;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="specialty" value="engelli_bakim"> Engelli Bakımı
+                            </label>
+                        </div>
+                        <div style="min-width: 200px;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="specialty" value="pediatrik_bakim"> Pediatrik Bakım
+                            </label>
+                        </div>
+                        <div style="min-width: 200px;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="specialty" value="diyabet"> Diyabet Bakımı
+                            </label>
+                        </div>
+                        <div style="min-width: 200px;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="specialty" value="yara_bakim"> Yara Bakımı
+                            </label>
+                        </div>
+                        <div style="min-width: 200px;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="specialty" value="enjeksiyon"> Enjeksiyon Uygulamaları
+                            </label>
+                        </div>
+                        <div style="min-width: 200px;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="specialty" value="iv_terapi"> IV Terapi
+                            </label>
+                        </div>
+                        <div style="min-width: 200px;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="specialty" value="fizik_tedavi"> Fizik Tedavi Desteği
+                            </label>
+                        </div>
+                        <div style="min-width: 200px;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="specialty" value="yenidogan"> Yenidoğan Bakımı
+                            </label>
+                        </div>
+                        <div style="min-width: 200px;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="specialty" value="palyatif_bakim"> Palyatif Bakım
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sertifikalar ve Ek Belgeler -->
+            <h3 style="margin: 1.5rem 0 1rem; color: var(--secondary);">Sertifikalar ve Belgeler</h3>
+            <div class="form-group">
+                <label for="nurse-certificates">Sertifikalar (Varsa)</label>
+                <textarea class="form-control" id="nurse-certificates" rows="3" placeholder="Sahip olduğunuz sertifikaları ve belgeleri listeleyin (örn: İlk Yardım, CPR, Özel Bakım, vb.)"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="nurse-diploma">Diploma Yükle*</label>
+                <input type="file" class="form-control" id="nurse-diploma" accept=".pdf,.jpg,.jpeg,.png" required>
+                <small style="color: #666; font-size: 0.8rem;">PDF, JPG veya PNG dosyası yükleyin (max 5MB)</small>
+            </div>
+            <div class="form-group">
+                <label for="nurse-license">Hemşirelik Lisans Belgesi Yükle*</label>
+                <input type="file" class="form-control" id="nurse-license" accept=".pdf,.jpg,.jpeg,.png" required>
+                <small style="color: #666; font-size: 0.8rem;">PDF, JPG veya PNG dosyası yükleyin (max 5MB)</small>
+            </div>
+            <div class="form-group">
+                <label for="nurse-additional-docs">Ek Belgeler (Varsa)</label>
+                <input type="file" class="form-control" id="nurse-additional-docs" accept=".pdf,.jpg,.jpeg,.png" multiple>
+                <small style="color: #666; font-size: 0.8rem;">Sertifikalar, referanslar veya diğer belgeler (max 5 dosya, 5MB)</small>
+            </div>
+            
+            <!-- Hizmet Bilgileri -->
+            <h3 style="margin: 1.5rem 0 1rem; color: var(--secondary);">Hizmet Bilgileri</h3>
+            <div class="form-group">
+                <label for="nurse-availability">Uygunluk Durumu*</label>
+                <select class="form-control" id="nurse-availability" required>
+                    <option value="">Uygunluk Durumunu Seçin</option>
+                    <option value="full-time">Tam Zamanlı</option>
+                    <option value="part-time">Yarı Zamanlı</option>
+                    <option value="weekends">Sadece Hafta Sonları</option>
+                    <option value="evenings">Akşam Saatleri</option>
+                    <option value="on-call">Çağrı Üzerine</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="nurse-service-areas">Hizmet Verebildiğiniz Bölgeler*</label>
+                <input type="text" class="form-control" id="nurse-service-areas" placeholder="Semtler veya ilçeler (virgülle ayırın)" required>
+            </div>
+            <div class="form-group">
+                <label for="nurse-hourly-rate">Saatlik Ücret (TL)*</label>
+                <input type="number" class="form-control" id="nurse-hourly-rate" min="0" required>
+            </div>
+            <div class="form-group">
+                <label for="nurse-skills">Ek Beceriler ve Hizmetler</label>
+                <textarea class="form-control" id="nurse-skills" rows="3" placeholder="Sunduğunuz diğer hizmetler veya sahip olduğunuz özel beceriler"></textarea>
+            </div>
+            
+            <!-- Biyografi -->
+            <h3 style="margin: 1.5rem 0 1rem; color: var(--secondary);">Biyografi ve Profil</h3>
+            <div class="form-group">
+                <label for="nurse-bio">Kendinizi Tanıtın*</label>
+                <textarea class="form-control" id="nurse-bio" rows="4" placeholder="Kendiniz, deneyimleriniz ve çalışma tarzınız hakkında kısa bir açıklama yazın" required></textarea>
+                <small style="color: #666; font-size: 0.8rem;">Bu metin profil sayfanızda görünecektir (150-300 karakter)</small>
+            </div>
+            <div class="form-group">
+                <label for="nurse-profile-pic">Profil Fotoğrafı*</label>
+                <input type="file" class="form-control" id="nurse-profile-pic" accept="image/*" required>
+                <small style="color: #666; font-size: 0.8rem;">Profesyonel bir fotoğraf yükleyin (max 2MB)</small>
+            </div>
+            
+            <!-- Hesap Bilgileri -->
+            <h3 style="margin: 1.5rem 0 1rem; color: var(--secondary);">Hesap Bilgileri</h3>
+            <div class="form-group">
+                <label for="nurse-password">Şifre*</label>
+                <input type="password" class="form-control" id="nurse-password" minlength="8" required>
+                <small style="color: #666; font-size: 0.8rem;">En az 8 karakter uzunluğunda olmalıdır</small>
+            </div>
+            <div class="form-group">
+                <label for="nurse-password-confirm">Şifre Tekrarı*</label>
+                <input type="password" class="form-control" id="nurse-password-confirm" minlength="8" required>
+            </div>
+            
+            <!-- Onay -->
+            <div class="form-group" style="margin-top: 1.5rem;">
+                <label class="checkbox-container" style="display: flex; align-items: flex-start;">
+                    <input type="checkbox" id="nurse-terms" required style="margin-top: 3px;">
+                    <span style="margin-left: 0.5rem;">
+                        <a href="#" style="color: var(--primary);">Kullanım Şartları</a> ve 
+                        <a href="#" style="color: var(--primary);">Gizlilik Politikası</a>'nı okudum ve kabul ediyorum.*
+                    </span>
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="checkbox-container" style="display: flex; align-items: flex-start;">
+                    <input type="checkbox" id="nurse-consent" required style="margin-top: 3px;">
+                    <span style="margin-left: 0.5rem;">
+                        Kimlik ve mesleki belgelerin doğrulanması için gerekli bilgilerimin kullanılmasını kabul ediyorum.*
+                    </span>
+                </label>
+            </div>
+            
+            <!-- Gönder Butonu -->
+            <div style="margin-top: 2rem;">
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;">Kaydı Tamamla</button>
+                <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: #666;">
+                    * işaretli alanlar zorunludur. Kaydınızı tamamladıktan sonra, bilgileriniz ekibimiz tarafından kontrol edilecek ve onaylandıktan sonra profiliniz aktif hale gelecektir.
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Kayıt formundaki checkboxların stilini düzeltmek için ek CSS -->
+<style>
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+/* Form grupları arasındaki boşlukları düzenle */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+/* Yükleme butonlarını düzenle */
+input[type="file"] {
+    padding: 0.5rem;
+    border: 1px dashed #ccc;
+    background-color: #f9f9f9;
+}
+
+/* Modal düzenlemeleri */
+.auth-modal {
+    overflow-y: auto;
+    padding: 1rem 0;
+}
+
+.modal-content {
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+</style>
+
+<!-- Modal açma ve kapama işlevleri için JavaScript -->
+<script>
+// Modal açma fonksiyonu
+function openModal(modalType) {
+    if (modalType === 'login') {
+        document.getElementById('login-modal').style.display = 'flex';
+    } else if (modalType === 'signup') {
+        document.getElementById('login-modal').style.display = 'flex';
+        document.querySelector('[data-tab="signup"]').click();
+    } else if (modalType === 'nurse-signup') {
+        document.getElementById('nurse-signup-modal').style.display = 'flex';
+    }
+}
+
+// Modal kapatma fonksiyonu
+function closeModal() {
+    document.getElementById('login-modal').style.display = 'none';
+    document.getElementById('nurse-signup-modal').style.display = 'none';
+}
+
+// Tab değiştirme fonksiyonları
+document.querySelectorAll('.modal-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+        // Tüm tabları pasif yap
+        document.querySelectorAll('.modal-tab').forEach(t => {
+            t.classList.remove('active');
+        });
+        
+        // Tüm içerikleri gizle
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.remove('active');
+        });
+        
+        // Tıklanan tabı aktif yap
+        this.classList.add('active');
+        
+        // İlgili içeriği göster
+        const tabId = this.getAttribute('data-tab');
+        document.getElementById(tabId + '-tab').classList.add('active');
+    });
+});
+
+// Hemşire kayıt formunu gönderme
+document.getElementById('nurse-signup-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    // Form doğrulama ve gönderme işlemleri burada yapılacak
+    alert('Kayıt formunuz alındı. Bilgileriniz incelendikten sonra sizinle iletişime geçeceğiz.');
+    closeModal();
+});
+</script>
+
+
+					

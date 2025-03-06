@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hemşire Olarak Kaydol</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4a6da7;
+            --secondary: #6a8dd3;
+            --light: #f8f9fa;
+            --dark: #343a40;
+        }
+
+        body {
+            background-color: var(--light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            background: white;
+            padding: 2rem;
+            margin: 3rem auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Hemşire Olarak Kaydol</h2>
+        <form id="nurse-signup-form">
+            <div class="form-group">
+                <label for="nurse-name">Ad Soyad*</label>
+                <input type="text" class="form-control" id="nurse-name" required>
+            </div>
+            <div class="form-group">
+                <label for="nurse-email">E-posta*</label>
+                <input type="email" class="form-control" id="nurse-email" required>
+            </div>
+            <div class="form-group">
+                <label for="nurse-phone">Telefon*</label>
+                <input type="tel" class="form-control" id="nurse-phone" required>
+            </div>
+            <div class="form-group">
+                <label for="nurse-city">Şehir*</label>
+                <select class="form-control" id="nurse-city" required>
+                    <option value="">Şehir Seçin</option>
+                    <option value="istanbul">İstanbul</option>
+                    <option value="ankara">Ankara</option>
+                    <option value="izmir">İzmir</option>
+                    <option value="adana">Adana</option>
+                    <option value="antalya">Antalya</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="nurse-experience">Deneyim (Yıl)*</label>
+                <input type="number" class="form-control" id="nurse-experience" min="0" required>
+            </div>
+            <button type="submit" class="btn-primary">Kaydı Tamamla</button>
+        </form>
+    </div>
+</body>
+</html>
